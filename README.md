@@ -65,7 +65,7 @@ docker compose up -d
 ![3](READMEimages/3.png)  
 ![5](READMEimages/5.png)  
 
-## Nginx Cloudflare 配置示例
+## Nginx 配置示例
 
 请手动填写 
 - 端口
@@ -86,31 +86,43 @@ server {
     ssl_certificate_key Key证书路径;
 
     ssl_protocols TLSv1.2 TLSv1.3;
-    ssl_ciphers HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers off;
+
+    gzip on;
+    gzip_types text/css application/json application/javascript text/javascript;
+    gzip_min_length 1024;
+    gzip_comp_level 6;
+
+    keepalive_timeout 64;
+
+    proxy_http_version 1.1;
+    proxy_set_header Connection "";
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+
+    proxy_connect_timeout 10s;
+    proxy_send_timeout 60s;
+    proxy_read_timeout 120s;
 
     location ^~ /data/ {
-        deny all;
-        return 403;
+        return 404;
     }
 
-    location ~ /\. {
-        deny all;
-        return 403;
+    location ~ (^|/)\. {
+        return 404;
     }
 
     location / {
-        proxy_pass http://127.0.0.1:8000;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-        proxy_read_timeout 3600s;
+        proxy_pass http://alicdt_backend;
     }
 }
 
+upstream alicdt_backend {
+    server 127.0.0.1:8000;
+    keepalive 64;
+}
 ```
 - 填好上方配置后
 ```bash
