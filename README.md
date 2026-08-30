@@ -74,6 +74,10 @@ docker compose up -d
 - Key证书路径
 
 ```bash
+nano /etc/nginx/sites-available/alicdt-manager.conf
+```
+- Nginx 配置示例
+```bash
 server {
     listen 端口 ssl;
     server_name 域名;
@@ -108,7 +112,13 @@ server {
 }
 
 ```
-
+- 填好上方配置后
+```bash
+ln -s /etc/nginx/sites-available/alicdt-manager.conf /etc/nginx/sites-enabled/
+```
+```bash
+nginx -t && systemctl reload nginx
+```
 ---
 
 ## 📋 常用命令
