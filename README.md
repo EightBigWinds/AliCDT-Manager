@@ -12,11 +12,11 @@
 ## ✨ 功能
 - 支持 AMD64 / ARM64 架构
 - 多账户聚合监控，CDT 流量实时展示
+- 抢占式实例保活：被回收自动拉起
 - 流量熔断：超阈值自动停机
 - 余额待还熔断：到设置的待还余额值自动停机
 - 抢占型实例类型库存不足提醒
 - 停机模式有节省停机和普通停机，默认节省，可自选择
-- 抢占式实例保活：被回收自动拉起
 - 定时开关机计划
 - Telegram 告警通知
 - 账单统计（待还款金额，国际站准确）
@@ -40,10 +40,8 @@ AliyunBSSFullAccess
 bash <(curl -fsSL https://raw.githubusercontent.com/lillinlin/AliCDT-Manager/main/install.sh)
 ```
 
-docker-compose.yml 默认端口为
-ports:
-     - "127.0.0.1:8000:8000"
-在安装完成需要配置 Nginx 反代通过域名访问
+- docker-compose.yml 默认端口为 ports: "127.0.0.1:8000:8000" 在安装完成需要配置 Nginx 反代通过域名访问
+- 如需 IP:端口 测试，可采用手动部署后手动编辑 docker-compose.yml
 
 
 ## 🛠 手动部署
@@ -69,26 +67,28 @@ docker compose up -d
 
 ## Nginx Cloudflare 配置示例
 
-请手动填写 #端口 #域名 #Pem证书路径 #Key证书路径
+请手动填写 
+- 端口
+- 域名
+- Pem证书路径
+- Key证书路径
 
 ```bash
 server {
-    listen #端口 ssl;
-    server_name #域名;
+    listen 端口 ssl;
+    server_name 域名;
 
-    ssl_certificate     #Pem证书路径;
-    ssl_certificate_key #Key证书路径;
+    ssl_certificate     Pem证书路径;
+    ssl_certificate_key Key证书路径;
 
     ssl_protocols TLSv1.2 TLSv1.3;
     ssl_ciphers HIGH:!aNULL:!MD5;
 
-    # 禁止访问数据目录
     location ^~ /data/ {
         deny all;
         return 403;
     }
 
-    # 禁止访问 .env 等敏感文件
     location ~ /\. {
         deny all;
         return 403;
