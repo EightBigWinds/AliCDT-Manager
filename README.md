@@ -47,7 +47,7 @@ curl -fsSL https://raw.githubusercontent.com/lillinlin/AliCDT-Manager/main/docke
 docker compose up -d
 ```
 
-## 添加账户变量填法
+## 🔑 添加账户变量填法
 - 备注名 随意
 
 ---
@@ -91,6 +91,10 @@ AliyunBSSFullAccess
 通常由 i- 开头
 
 ![10](READMEimages/04908720a27d7108e0a209cb1f58c30d.png) 
+
+
+---
+
 
 - 地域ID
 
