@@ -21,6 +21,7 @@
 - Telegram 告警通知
 - 账单统计（待还款金额，国际站准确）
 - 每1~2分钟自动同步数据，有特殊情况可点击立即同步
+- 当月出现熔断，将在下个月2号自动拉起
 
 ## 🚀 一键安装
 
@@ -95,7 +96,7 @@ AliyunBSSFullAccess
 
 - 地域ID
 
-在机器实例页面浏览器网址栏文章末段会有 "regionId=xx-xxxx#/" 中间的xx-xxxx就是 
+在机器实例页面浏览器网址栏末段会有 "regionId=xx-xxxx#/" 中间的xx-xxxx就是 
 
 ![11](READMEimages/37ff4beabada66ef6cdfb86b660af338.png) 
 
