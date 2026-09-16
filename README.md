@@ -100,11 +100,11 @@ AliyunBSSFullAccess
 
 ![11](READMEimages/37ff4beabada66ef6cdfb86b660af338.png) 
 
-比如说香港是 "regionId=cn-hongkong#/" 那么地域ID就填"cn-hongkong"
+比如说香港是 "regionId=cn-hongkong#/" 那么地域ID就填 cn-hongkong
 
-比如说日本是 "regionId=ap-northeast-1#/" 那么地域ID就填"ap-northeast-1"
+比如说日本是 "regionId=ap-northeast-1#/" 那么地域ID就填 ap-northeast-1
 
-比如说新加坡是 "regionId=ap-southeast-1#/" 那么地域ID就填"ap-southeast-1"
+比如说新加坡是 "regionId=ap-southeast-1#/" 那么地域ID就填 ap-southeast-1
 
 以此类推
 
