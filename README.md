@@ -48,9 +48,6 @@ docker compose up -d
 ```
 
 ## 🔑 添加账户变量填法
-- 备注名 随意
-
----
 - AccessKey ID 和 AccessKey Secret 获取 / 创建RAM用户及授权
 
 在 https://ram.console.alibabacloud.com/users 创建RAM用户时 在填写随意登录名称后 
